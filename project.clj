@@ -13,4 +13,6 @@
   :ring {:handler conway.web/handler
          :nrepl {:start? true
                  :port 7888}
-         :auto-reload? false})
+         :auto-reload? false}
+
+  :aliases {"start" ["ring" "server"]})
