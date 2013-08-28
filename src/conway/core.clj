@@ -6,11 +6,13 @@
   (zero? (rand-int n)))
 
 (defn create-grid
-  [n f]
-  (->> (for [i (range n)
-             j (range n)]
-         [[i j] (f n)])
-       (into {})))
+  ([n] (create-grid n live?))
+  
+  ([n f]
+     (->> (for [i (range n)
+                j (range n)]
+            [[i j] (f n)])
+          (into {}))))
 
 
 (defn neighbours
