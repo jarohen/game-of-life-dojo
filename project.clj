@@ -15,4 +15,4 @@
                  :port 7888}
          :auto-reload? false}
 
-  :aliases {"start" ["ring" "server"]})
+  :aliases {"start" ["ring" "server-headless"]})
