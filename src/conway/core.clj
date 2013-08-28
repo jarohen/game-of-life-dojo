@@ -25,15 +25,17 @@
 (defn count-neighbours [neighbours]
   (count (filter identity neighbours)))
 
-(def alive-next-step?
-  (comp boolean #{2 3}))
+(defn alive-next-step? [neighbours-count alive-already?]
+  (-> [neighbours-count alive-already?]
+      #{[2 true] [3 true] [3 false]}
+      boolean))
 
 (defn step
   [grid]
-  (->> (for [[[x y] _] grid]
-         [[x y] (->> (neighbours grid x y)
-                     count-neighbours
-                     alive-next-step?)])
+  (->> (for [[[x y] alive-already?] grid]
+         [[x y] (-> (neighbours grid x y)
+                    count-neighbours
+                    (alive-next-step? alive-already?))])
        (into {})))
 
 (defn render-cell [cell-live?]
